@@ -503,68 +503,74 @@ export function WorkdayApplicationModal({
 
           <Separator />
 
-          {/* Work Experience Section */}
+          {/* Current Employment Section - Accordion */}
           <div>
-            <Card className="p-4 bg-gray-50">
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[#3E6BAF]">
-                    <Briefcase className="w-4 h-4" />
-                    <h5>Current Employment</h5>
-                    <Edit3 className="w-3.5 h-3.5 text-gray-400" />
+            <Accordion type="single" collapsible>
+              <AccordionItem value="current-employment" className="border-none">
+                <AccordionTrigger className="px-0 py-2 hover:no-underline">
+                  <div className="flex items-center justify-between w-full pr-4">
+                    <div className="flex items-center gap-2 text-[#3E6BAF]">
+                      <Briefcase className="w-4 h-4" />
+                      <h5>Current Employment: {currentEmployment.title} • {currentEmployment.company}</h5>
+                      <Edit3 className="w-3.5 h-3.5 ml-1 text-gray-400" />
+                    </div>
+                    <Badge variant="outline" className="text-xs ml-auto">
+                      {currentEmployment.startDate} - {currentEmployment.endDate}
+                    </Badge>
                   </div>
-                  <Badge variant="outline" className="text-xs">
-                    {currentEmployment.startDate} - {currentEmployment.endDate}
-                  </Badge>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label className="text-xs text-muted-foreground">Company</Label>
-                    <Input
-                      value={currentEmployment.company}
-                      onChange={(e) => setCurrentEmployment({ ...currentEmployment, company: e.target.value })}
-                      className="mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label className="text-xs text-muted-foreground">Job Title</Label>
-                    <Input
-                      value={currentEmployment.title}
-                      onChange={(e) => setCurrentEmployment({ ...currentEmployment, title: e.target.value })}
-                      className="mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label className="text-xs text-muted-foreground">Start Date</Label>
-                    <Input
-                      value={currentEmployment.startDate}
-                      onChange={(e) => setCurrentEmployment({ ...currentEmployment, startDate: e.target.value })}
-                      className="mt-1"
-                      placeholder="e.g., January 2020"
-                    />
-                  </div>
-                  <div>
-                    <Label className="text-xs text-muted-foreground">End Date</Label>
-                    <Input
-                      value={currentEmployment.endDate}
-                      onChange={(e) => setCurrentEmployment({ ...currentEmployment, endDate: e.target.value })}
-                      className="mt-1"
-                      placeholder="Current or e.g., December 2023"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <Label className="text-xs text-muted-foreground">Description</Label>
-                    <textarea
-                      className="w-full mt-1 p-2 border rounded-md text-sm"
-                      rows={3}
-                      value={currentEmployment.description}
-                      onChange={(e) => setCurrentEmployment({ ...currentEmployment, description: e.target.value })}
-                      placeholder="Describe your responsibilities and achievements..."
-                    />
-                  </div>
-                </div>
-              </div>
-            </Card>
+                </AccordionTrigger>
+                <AccordionContent className="pt-3">
+                  <Card className="p-4 bg-gray-50">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label className="text-xs text-muted-foreground">Company</Label>
+                        <Input
+                          value={currentEmployment.company}
+                          onChange={(e) => setCurrentEmployment({ ...currentEmployment, company: e.target.value })}
+                          className="mt-1"
+                        />
+                      </div>
+                      <div>
+                        <Label className="text-xs text-muted-foreground">Job Title</Label>
+                        <Input
+                          value={currentEmployment.title}
+                          onChange={(e) => setCurrentEmployment({ ...currentEmployment, title: e.target.value })}
+                          className="mt-1"
+                        />
+                      </div>
+                      <div>
+                        <Label className="text-xs text-muted-foreground">Start Date</Label>
+                        <Input
+                          value={currentEmployment.startDate}
+                          onChange={(e) => setCurrentEmployment({ ...currentEmployment, startDate: e.target.value })}
+                          className="mt-1"
+                          placeholder="e.g., January 2020"
+                        />
+                      </div>
+                      <div>
+                        <Label className="text-xs text-muted-foreground">End Date</Label>
+                        <Input
+                          value={currentEmployment.endDate}
+                          onChange={(e) => setCurrentEmployment({ ...currentEmployment, endDate: e.target.value })}
+                          className="mt-1"
+                          placeholder="Current or e.g., December 2023"
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <Label className="text-xs text-muted-foreground">Description</Label>
+                        <textarea
+                          className="w-full mt-1 p-2 border rounded-md text-sm"
+                          rows={3}
+                          value={currentEmployment.description}
+                          onChange={(e) => setCurrentEmployment({ ...currentEmployment, description: e.target.value })}
+                          placeholder="Describe your responsibilities and achievements..."
+                        />
+                      </div>
+                    </div>
+                  </Card>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
 
           <Separator />
