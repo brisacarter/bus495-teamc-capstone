@@ -264,7 +264,7 @@ export function Dashboard() {
                 )}
               </Button>
             </SheetTrigger>
-            <SheetContent className="w-full sm:max-w-xl overflow-y-auto pl-8 pr-[28px]">
+            <SheetContent className="w-full sm:max-w-xl overflow-y-auto pl-8 pr-[30px]">
               <SheetHeader>
                 <SheetTitle>Notifications</SheetTitle>
                 <SheetDescription>
