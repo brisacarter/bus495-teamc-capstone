@@ -64,9 +64,11 @@ npm run build
 ## Recent Changes
 - October 23, 2025: Initial Replit setup
   - Configured Vite to use port 5000 with host 0.0.0.0
+  - Added `allowedHosts: true` to allow Replit proxy hosts
   - Added .gitignore for Node.js projects
   - Installed TypeScript dependency
   - Set up workflow for development server
+  - Configured deployment settings for production
 
 ## Notes
 - The application uses pre-compiled Tailwind CSS (no build step required for styles)
