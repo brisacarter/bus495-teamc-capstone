@@ -961,22 +961,28 @@ export function WorkdayApplicationModal({
               {/* Experience */}
               <div>
                 <h2 className="text-lg border-b pb-2 mb-3">Experience</h2>
-                <div className="space-y-4">
+                <Accordion type="single" collapsible className="space-y-2">
                   {employmentHistory.map((job, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-medium">{job.title}</h3>
-                        <span className="text-sm text-muted-foreground">{job.startDate} - {job.endDate}</span>
-                      </div>
-                      <p className="text-sm text-[#3E6BAF] mb-2">{job.company} • {job.location}</p>
-                      <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-                        {job.responsibilities.map((resp, idx) => (
-                          <li key={idx}>{resp}</li>
-                        ))}
-                      </ul>
-                    </div>
+                    <AccordionItem key={index} value={`job-${index}`} className="border rounded-lg px-4">
+                      <AccordionTrigger className="hover:no-underline py-3">
+                        <div className="flex flex-col items-start text-left flex-1 pr-4">
+                          <div className="flex justify-between items-start w-full mb-1">
+                            <h3 className="font-medium">{job.title}</h3>
+                            <span className="text-sm text-muted-foreground ml-4">{job.startDate} - {job.endDate}</span>
+                          </div>
+                          <p className="text-sm text-[#3E6BAF]">{job.company} • {job.location}</p>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-3">
+                        <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                          {job.responsibilities.map((resp, idx) => (
+                            <li key={idx}>{resp}</li>
+                          ))}
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
                   ))}
-                </div>
+                </Accordion>
               </div>
 
               {/* Education */}
