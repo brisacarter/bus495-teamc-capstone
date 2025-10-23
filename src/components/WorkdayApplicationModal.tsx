@@ -967,7 +967,7 @@ export function WorkdayApplicationModal({
               {/* Experience */}
               <div>
                 <h2 className="text-lg border-b pb-2 mb-3">Experience</h2>
-                <Accordion type="single" collapsible className="space-y-2">
+                <Accordion type="multiple" defaultValue={employmentHistory.map((_, index) => `job-${index}`)} className="space-y-2">
                   {employmentHistory.map((job, index) => (
                     <AccordionItem key={index} value={`job-${index}`} className="border rounded-lg px-4">
                       <AccordionTrigger className="hover:no-underline py-3">
@@ -1040,24 +1040,6 @@ export function WorkdayApplicationModal({
                 </div>
               </div>
 
-              {/* Contact Information */}
-              <div>
-                <h2 className="text-lg border-b pb-2 mb-3">Contact Information</h2>
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div>
-                    <span className="text-muted-foreground">Address:</span>
-                    <p>{userData.addressLine1}</p>
-                    {userData.addressLine2 && <p>{userData.addressLine2}</p>}
-                    <p>{userData.city}, {userData.state} {userData.zipCode}</p>
-                    <p>{userData.country}</p>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Phone Numbers:</span>
-                    <p>{userData.phone}</p>
-                    <p>{userData.mobilePhone}</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </ScrollArea>
 

@@ -512,15 +512,15 @@ export function Dashboard() {
                 </Card>
 
                 {externalJobs.length > 0 && (
-                  <Card className="p-4 bg-amber-50 border-amber-200">
+                  <Card className="p-4" style={{ backgroundColor: '#3E6BAF15', borderColor: '#3E6BAF' }}>
                     <div className="flex items-start gap-3">
-                      <ExternalLink className="w-5 h-5 text-amber-600 mt-0.5" />
+                      <Building2 className="w-5 h-5 mt-0.5" style={{ color: '#3E6BAF' }} />
                       <div>
-                        <h4 className="text-amber-900 mb-1">External Applications</h4>
-                        <p className="text-sm text-amber-800">
+                        <h4 className="mb-1" style={{ color: '#3E6BAF' }}>Workday Application</h4>
+                        <p className="text-sm" style={{ color: '#3E6BAF' }}>
                           <strong>{externalJobs.length} job{externalJobs.length > 1 ? 's' : ''}</strong> require external application and will not be included in this bulk apply:
                         </p>
-                        <ul className="text-sm text-amber-800 mt-2 space-y-1">
+                        <ul className="text-sm mt-2 space-y-1" style={{ color: '#3E6BAF' }}>
                           {externalJobs.map(job => (
                             <li key={job.id} className="ml-4">• {job.title} at {job.company}</li>
                           ))}
@@ -559,7 +559,7 @@ export function Dashboard() {
                   </Button>
                   <Button 
                     onClick={handleBulkApply}
-                    className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                    className="flex-1 bg-gradient-to-r from-[#3E6BAF] to-[#569ead] hover:opacity-90 text-white"
                     disabled={isApplying}
                   >
                     {isApplying ? 'Applying...' : `Apply to ${applicableJobs.length} Job${applicableJobs.length > 1 ? 's' : ''}`}
