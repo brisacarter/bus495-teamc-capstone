@@ -97,7 +97,7 @@ export function AppLayout({ children }: AppLayoutProps) {
                 )}
               </Button>
             </SheetTrigger>
-            <SheetContent className="w-full sm:max-w-xl overflow-y-auto pl-8">
+            <SheetContent className="w-full sm:max-w-xl overflow-y-auto pl-8 pr-[28px]">
               <SheetHeader>
                 <SheetTitle>Notifications</SheetTitle>
                 <SheetDescription>
@@ -145,7 +145,7 @@ export function AppLayout({ children }: AppLayoutProps) {
                 )}
               </Button>
             </SheetTrigger>
-            <SheetContent className="w-full sm:max-w-xl overflow-y-auto pl-8">
+            <SheetContent className="w-full sm:max-w-xl overflow-y-auto pl-8 pr-[28px]">
               <SheetHeader>
                 <SheetTitle>Notifications</SheetTitle>
                 <SheetDescription>
