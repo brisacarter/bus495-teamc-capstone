@@ -101,10 +101,7 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
       } else {
         // All jobs complete
         setIsComplete(true);
-        setTimeout(() => {
-          onComplete();
-          onOpenChange(false);
-        }, 2000);
+        onComplete();
       }
       return;
     }

@@ -127,7 +127,6 @@ export function Dashboard() {
     setIsApplying(true);
     const result = await bulkApplyToJobs(speedApplyJobs.map(job => job.id));
     setIsApplying(false);
-    setShowSpeedApplyModal(false);
     
     if (result.successful.length > 0) {
       toast.success(`Successfully applied to ${result.successful.length} job${result.successful.length > 1 ? 's' : ''} via Speed Apply!`);
