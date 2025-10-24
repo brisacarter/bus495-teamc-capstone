@@ -233,7 +233,7 @@ Application Link: ${job.applicationLink}
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-muted-foreground">
-                    Overall Progress: {currentJobIndex + 1} of {jobs.length} jobs
+                    Overall Progress: {isComplete ? jobs.length : currentJobIndex + 1} of {jobs.length} jobs
                   </span>
                   <span>{Math.round(progress)}%</span>
                 </div>
