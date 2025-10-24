@@ -4,6 +4,8 @@ import { SignupScreen } from './components/SignupScreen';
 import { AppLayout } from './components/AppLayout';
 import { Dashboard } from './components/Dashboard';
 import { CalendarView } from './components/CalendarView';
+import { InterviewPrepView } from './components/InterviewPrepView';
+import { LiveCoachView } from './components/LiveCoachView';
 import { ProfileView } from './components/ProfileView';
 import { BillingView } from './components/BillingView';
 import { Toaster } from './components/ui/sonner';
@@ -21,6 +23,10 @@ function AppContent() {
         return <Dashboard />;
       case 'calendar':
         return <CalendarView />;
+      case 'interview-prep':
+        return <InterviewPrepView />;
+      case 'live-coach':
+        return <LiveCoachView />;
       case 'profile':
         return <ProfileView />;
       case 'billing':

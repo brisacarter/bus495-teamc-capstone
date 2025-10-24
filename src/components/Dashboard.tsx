@@ -44,11 +44,13 @@ import {
   FileDown,
   Info,
   Bell,
-  Zap
+  Zap,
+  Mic
 } from 'lucide-react';
 import { JobLead, ApplicationStatus } from '../types';
 import { SpeedApplyModal } from './SpeedApplyModal';
 import { WorkdayApplicationModal } from './WorkdayApplicationModal';
+import { InterviewPrepUpgradeModal } from './InterviewPrepUpgradeModal';
 import {
   Tooltip,
   TooltipContent,
@@ -57,7 +59,7 @@ import {
 } from './ui/tooltip';
 
 export function Dashboard() {
-  const { jobs, addJob, updateJob, deleteJob, user, notifications, bulkApplyToJobs } = useApp();
+  const { jobs, addJob, updateJob, deleteJob, user, notifications, bulkApplyToJobs, setCurrentScreen } = useApp();
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingJob, setEditingJob] = useState<JobLead | null>(null);
@@ -67,6 +69,7 @@ export function Dashboard() {
   const [showSpeedApplyModal, setShowSpeedApplyModal] = useState(false);
   const [showWorkdayModal, setShowWorkdayModal] = useState(false);
   const [selectedWorkdayJob, setSelectedWorkdayJob] = useState<JobLead | null>(null);
+  const [showInterviewPrepUpgrade, setShowInterviewPrepUpgrade] = useState(false);
   
   const [formData, setFormData] = useState({
     title: '',
@@ -656,6 +659,27 @@ export function Dashboard() {
                 </div>
 
                 <div className="flex md:flex-col gap-2">
+                  {/* Interview Prep Button - Only for TechCorp Senior Software Engineer */}
+                  {job.company === 'TechCorp' && job.title === 'Senior Software Engineer' && job.status === 'interviewing' && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const hasCredits = (user?.interviewPrepCredits || 0) > 0;
+                        if (hasCredits) {
+                          setCurrentScreen('interview-prep');
+                        } else {
+                          setShowInterviewPrepUpgrade(true);
+                        }
+                      }}
+                      className="flex-1 md:flex-none border-[#3E6BAF] text-[#3E6BAF] hover:bg-[#3E6BAF] hover:text-white"
+                    >
+                      <Mic className="w-4 h-4 md:mr-2" />
+                      <span className="hidden md:inline">Start Interview Prep</span>
+                      <span className="md:hidden">🎤 Prep</span>
+                    </Button>
+                  )}
                   <Button
                     size="sm"
                     variant="outline"
@@ -723,6 +747,16 @@ export function Dashboard() {
           }}
         />
       )}
+
+      {/* Interview Prep Upgrade Modal */}
+      <InterviewPrepUpgradeModal
+        isOpen={showInterviewPrepUpgrade}
+        onOpenChange={setShowInterviewPrepUpgrade}
+        onUpgrade={() => {
+          setShowInterviewPrepUpgrade(false);
+          setCurrentScreen('billing');
+        }}
+      />
     </div>
   );
 }

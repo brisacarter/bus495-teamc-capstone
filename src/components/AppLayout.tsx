@@ -11,7 +11,9 @@ import {
   Bell,
   Menu,
   X,
-  LogOut
+  LogOut,
+  Mic,
+  Users
 } from 'lucide-react';
 import { useState } from 'react';
 import {
@@ -38,6 +40,8 @@ export function AppLayout({ children }: AppLayoutProps) {
   const navigation = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'calendar', label: 'Calendar', icon: Calendar },
+    { id: 'interview-prep', label: 'Interview Prep', icon: Mic },
+    { id: 'live-coach', label: 'Live Coach', icon: Users },
     { id: 'profile', label: 'Profile', icon: User },
     { id: 'billing', label: 'Billing', icon: CreditCard },
   ];
