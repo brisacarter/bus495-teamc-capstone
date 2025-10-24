@@ -101,8 +101,10 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
         setSteps(steps.map(step => ({ ...step, status: 'pending' })));
         setTimeout(() => processNextStep(0), 500);
       } else {
-        // All jobs complete
+        // All jobs complete - mark all steps as complete and stop
+        setSteps(prev => prev.map(step => ({ ...step, status: 'complete' })));
         setIsComplete(true);
+        setIsProcessing(false);
         onComplete();
       }
       return;
