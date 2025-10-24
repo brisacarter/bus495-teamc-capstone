@@ -79,14 +79,16 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
   ]);
 
   const currentJob = jobs[currentJobIndex];
-  const progress = isComplete ? 100 : (currentJobIndex / jobs.length) * 100;
+  const completedJobs = isComplete ? jobs.length : currentJobIndex;
+  const progress = (completedJobs / jobs.length) * 100;
 
   useEffect(() => {
-    if (isOpen && !isProcessing && !isComplete) {
+    if (isOpen) {
       // Reset state when modal opens
       setCurrentJobIndex(0);
       setIsComplete(false);
-      setSteps(steps.map(step => ({ ...step, status: 'pending' })));
+      setIsProcessing(false);
+      setSteps(prev => prev.map(step => ({ ...step, status: 'pending' })));
     }
   }, [isOpen]);
 
@@ -231,7 +233,7 @@ Application Link: ${job.applicationLink}
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-muted-foreground">
-                    Overall Progress: {currentJobIndex + (isComplete ? 1 : 0)} of {jobs.length} jobs
+                    Overall Progress: {currentJobIndex + 1} of {jobs.length} jobs
                   </span>
                   <span>{Math.round(progress)}%</span>
                 </div>
