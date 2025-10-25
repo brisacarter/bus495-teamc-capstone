@@ -139,7 +139,7 @@ export function BillingView() {
           </Card>
 
           {/* Premium Plan */}
-          <Card className="p-6 relative bg-gradient-to-b from-gray-900 to-black text-white">
+          <Card className="p-6 relative bg-black text-white border-black">
             <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white">
               Best Value
             </Badge>
@@ -154,40 +154,40 @@ export function BillingView() {
               <div className="text-center mb-6">
                 <h3 className="mb-2 text-white">Premium</h3>
                 <div className="mb-2">
-                  <span className="text-4xl font-bold">$600</span>
-                  <span className="text-gray-300">/month</span>
+                  <span className="text-4xl font-bold text-white">$600</span>
+                  <span className="text-white/70">/month</span>
                 </div>
-                <p className="text-sm text-gray-300">Complete career acceleration package</p>
+                <p className="text-sm text-white/70">Complete career acceleration package</p>
               </div>
               
               <ul className="space-y-3 mb-6 flex-1">
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-100">Everything in Pro</span>
+                  <span className="text-white">Everything in Pro</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-100">6 Interview Prep sessions</span>
+                  <span className="text-white">6 Interview Prep sessions</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-100">2 Live 1-on-1 coach calls</span>
+                  <span className="text-white">2 Live 1-on-1 coach calls</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-100">Dedicated career specialist</span>
+                  <span className="text-white">Dedicated career specialist</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-100">Resume review + feedback</span>
+                  <span className="text-white">Resume review + feedback</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-100">Resume writing service</span>
+                  <span className="text-white">Resume writing service</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-100">LinkedIn profile optimization</span>
+                  <span className="text-white">LinkedIn profile optimization</span>
                 </li>
               </ul>
 
@@ -204,8 +204,8 @@ export function BillingView() {
       </div>
 
       {/* Add Individual Sessions & Cart */}
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="md:col-span-2">
+      <div className="grid md:grid-cols-[1fr_350px] gap-6 items-start">
+        <div>
           <h3 className="mb-4">Add Individual Sessions</h3>
           <p className="text-sm text-muted-foreground mb-6">Purchase sessions à la carte to supplement your plan</p>
           
@@ -287,8 +287,8 @@ export function BillingView() {
         </div>
 
         {/* Your Cart */}
-        <div className="md:col-span-1">
-          <Card className="p-6 border-2">
+        <div>
+          <Card className="p-6 border-2 sticky top-4">
             <h3 className="mb-6 flex items-center gap-2">
               <ShoppingCart className="w-5 h-5" />
               Your Cart
