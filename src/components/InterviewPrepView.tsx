@@ -356,11 +356,11 @@ export function InterviewPrepView() {
           </div>
 
           {/* Start Interview CTA */}
-          <Card className="p-8 bg-gradient-to-r from-[#3E6BAF] to-[#5580C7] text-white">
+          <Card className="p-8 bg-[#3E6BAF] text-white">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex-1">
                 <h2 className="text-white mb-2">Ready to practice?</h2>
-                <p className="text-blue-100">
+                <p className="text-white/90">
                   Start an AI-powered mock interview and receive instant feedback to improve your performance.
                 </p>
               </div>
