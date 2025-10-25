@@ -27,7 +27,8 @@ import {
   Settings,
   CreditCard,
   Camera,
-  Mic
+  Mic,
+  Calendar as CalendarIcon
 } from 'lucide-react';
 import { SeniorityLevel } from '../types';
 import { PdfExportDialog } from './PdfExportDialog';
@@ -49,6 +50,8 @@ export function ProfileView() {
   });
   const [cameraPermission, setCameraPermission] = useState(false);
   const [micPermission, setMicPermission] = useState(false);
+  const [googleEmailPermission, setGoogleEmailPermission] = useState(false);
+  const [googleCalendarPermission, setGoogleCalendarPermission] = useState(false);
   const [profileData, setProfileData] = useState({
     jobInterests: user?.profile.jobInterests.join(', ') || '',
     seniorityLevel: user?.profile.seniorityLevel || 'mid-level',
@@ -382,6 +385,42 @@ export function ProfileView() {
                   id="microphone"
                   checked={micPermission}
                   onCheckedChange={setMicPermission}
+                />
+              </div>
+
+              {/* Google Email Permission */}
+              <div className="flex items-start justify-between gap-4 pt-4 border-t">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Mail className="w-5 h-5" />
+                    <h4 className="font-medium">Google Email Access</h4>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Allow access to your Google Email for job application tracking
+                  </p>
+                </div>
+                <Switch
+                  id="google-email"
+                  checked={googleEmailPermission}
+                  onCheckedChange={setGoogleEmailPermission}
+                />
+              </div>
+
+              {/* Google Calendar Permission */}
+              <div className="flex items-start justify-between gap-4 pt-4 border-t">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <CalendarIcon className="w-5 h-5" />
+                    <h4 className="font-medium">Google Calendar Access</h4>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Allow access to your Google Calendar for interview scheduling
+                  </p>
+                </div>
+                <Switch
+                  id="google-calendar"
+                  checked={googleCalendarPermission}
+                  onCheckedChange={setGoogleCalendarPermission}
                 />
               </div>
             </div>
