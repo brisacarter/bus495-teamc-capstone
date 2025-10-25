@@ -192,15 +192,15 @@ export function LiveCoachView() {
               <div className="grid md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8 text-left max-w-3xl mx-auto">
                 <div className="p-3 md:p-4 bg-white border rounded-lg">
                   <CheckCircle2 className="w-5 h-5 text-green-600 mb-2" />
-                  <p className="text-sm font-medium">4 coaching sessions/month</p>
+                  <p className="text-sm font-medium">2 Live Coach sessions</p>
+                </div>
+                <div className="p-3 md:p-4 bg-white border rounded-lg">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 mb-2" />
+                  <p className="text-sm font-medium">6 Interview Prep sessions/month</p>
                 </div>
                 <div className="p-3 md:p-4 bg-white border rounded-lg">
                   <CheckCircle2 className="w-5 h-5 text-green-600 mb-2" />
                   <p className="text-sm font-medium">Expert career guidance</p>
-                </div>
-                <div className="p-3 md:p-4 bg-white border rounded-lg">
-                  <CheckCircle2 className="w-5 h-5 text-green-600 mb-2" />
-                  <p className="text-sm font-medium">Mock interview practice</p>
                 </div>
               </div>
 
