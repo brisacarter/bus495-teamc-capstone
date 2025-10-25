@@ -516,7 +516,7 @@ export function InterviewPrepView() {
   // FRAME 2: AI Interview (Live Recording)
   if (currentFrame === 'interview') {
     return (
-      <div className="h-full bg-gray-900 flex flex-col">
+      <div className="h-full bg-[#1C2432] flex flex-col">
         {/* Analyzing Modal */}
         <Dialog open={showAnalyzing} onOpenChange={() => {}}>
           <DialogContent className="max-w-md">
@@ -543,7 +543,7 @@ export function InterviewPrepView() {
         </Dialog>
 
         {/* Header */}
-        <div className="bg-gray-800 border-b border-gray-700 p-4">
+        <div className="bg-[#2A3744] border-b border-gray-700 p-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
               <h2 className="text-white">AI Mock Interview</h2>
@@ -568,7 +568,7 @@ export function InterviewPrepView() {
         {/* Main Content */}
         <div className="flex-1 grid md:grid-cols-3 gap-4 p-4 overflow-hidden">
           {/* Left: AI Avatar */}
-          <Card className="bg-gray-800 border-gray-700 p-6 flex flex-col">
+          <Card className="bg-[#2A3744] border-gray-700 p-6 flex flex-col">
             <h3 className="text-white mb-4 flex items-center gap-2">
               AI Interviewer
               <span className="text-lg">{getToneIndicator(currentQuestion?.tone || 'warm')}</span>
@@ -605,7 +605,7 @@ export function InterviewPrepView() {
                   <p className="text-xs text-gray-400 mb-1">Evaluation Focus:</p>
                   <div className="flex flex-wrap gap-1">
                     {currentQuestion.evaluationFocus.map((focus, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs bg-gray-800 text-gray-300 border-gray-600">
+                      <Badge key={idx} variant="outline" className="text-xs bg-[#2A3744] text-gray-300 border-gray-600">
                         {focus}
                       </Badge>
                     ))}
@@ -636,11 +636,11 @@ export function InterviewPrepView() {
           </Card>
 
           {/* Center: User Webcam */}
-          <Card className="bg-gray-800 border-gray-700 p-6 flex flex-col">
+          <Card className="bg-[#2A3744] border-gray-700 p-6 flex flex-col">
             <h3 className="text-white mb-4">Your Video</h3>
             
             {/* Webcam Preview Placeholder */}
-            <div className="flex-1 bg-gray-900 rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div className="flex-1 bg-[#1C2432] rounded-lg flex items-center justify-center relative overflow-hidden">
               <div className="text-center">
                 <Video className="w-16 h-16 text-gray-600 mx-auto mb-4" />
                 <p className="text-gray-500">Camera Preview</p>
@@ -721,7 +721,7 @@ export function InterviewPrepView() {
           </Card>
 
           {/* Right: Stage Tracker */}
-          <Card className="bg-gray-800 border-gray-700 p-6">
+          <Card className="bg-[#2A3744] border-gray-700 p-6">
             <h3 className="text-white mb-4">Interview Stages</h3>
             
             <div className="space-y-3">
