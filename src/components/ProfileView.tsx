@@ -169,11 +169,12 @@ export function ProfileView() {
         </TabsList>
 
         {/* Account Settings */}
-        <TabsContent value="account">
-          <Card className="p-4 md:p-6">
-            <h3 className="mb-6">Account Settings</h3>
+        <TabsContent value="account" className="space-y-6">
+          {/* Login Details */}
+          <Card className="p-6">
+            <h3 className="mb-6">Login Details</h3>
             
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="username">Username</Label>
                 <Input
@@ -185,94 +186,105 @@ export function ProfileView() {
 
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={accountData.email}
-                  onChange={(e) => setAccountData({ ...accountData, email: e.target.value })}
-                />
-              </div>
-
-              <div className="border-t pt-6">
-                <h4 className="mb-4">Change Password</h4>
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="current-password">Current Password</Label>
-                    <Input
-                      id="current-password"
-                      type="password"
-                      value={accountData.currentPassword}
-                      onChange={(e) => setAccountData({ ...accountData, currentPassword: e.target.value })}
-                      placeholder="••••••••"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="new-password">New Password</Label>
-                    <Input
-                      id="new-password"
-                      type="password"
-                      value={accountData.newPassword}
-                      onChange={(e) => setAccountData({ ...accountData, newPassword: e.target.value })}
-                      placeholder="••••••••"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="confirm-password">Confirm New Password</Label>
-                    <Input
-                      id="confirm-password"
-                      type="password"
-                      value={accountData.confirmPassword}
-                      onChange={(e) => setAccountData({ ...accountData, confirmPassword: e.target.value })}
-                      placeholder="••••••••"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-t pt-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <Shield className="w-5 h-5" />
-                      <Label htmlFor="2fa" className="cursor-pointer">
-                        Two-Factor Authentication
-                      </Label>
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      Add an extra layer of security to your account
-                    </p>
-                  </div>
-                  <Switch
-                    id="2fa"
-                    checked={user?.twoFactorEnabled}
-                    onCheckedChange={handleToggle2FA}
+                <div className="flex gap-2">
+                  <Input
+                    id="email"
+                    type="email"
+                    value={accountData.email}
+                    onChange={(e) => setAccountData({ ...accountData, email: e.target.value })}
+                    className="flex-1"
                   />
+                  <Button variant="outline" size="icon">
+                    <Mail className="w-4 h-4" />
+                  </Button>
                 </div>
-                
-                {user?.twoFactorEnabled && (
-                  <Card className="mt-4 p-3 md:p-4 bg-blue-50 border-blue-200">
-                    <p className="text-sm text-blue-900">
-                      Two-factor authentication is enabled. You'll need to enter a code from your authenticator app when signing in.
-                    </p>
-                  </Card>
-                )}
               </div>
 
               <Button onClick={handleAccountSave} className="w-full">
-                Save Account Settings
+                Save Changes
               </Button>
-
-              {/* PDF Export Section */}
-              <div className="border-t pt-6">
-                <h4 className="mb-4">Export Data</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Export your job search data and application screens to PDF for your records or to share with career advisors.
-                </p>
-                <PdfExportDialog />
-              </div>
             </div>
+          </Card>
+
+          {/* Change Password */}
+          <Card className="p-6">
+            <h3 className="mb-6">Change Password</h3>
+            
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="current-password">Current Password</Label>
+                <Input
+                  id="current-password"
+                  type="password"
+                  value={accountData.currentPassword}
+                  onChange={(e) => setAccountData({ ...accountData, currentPassword: e.target.value })}
+                  placeholder="••••••••"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="new-password">New Password</Label>
+                <Input
+                  id="new-password"
+                  type="password"
+                  value={accountData.newPassword}
+                  onChange={(e) => setAccountData({ ...accountData, newPassword: e.target.value })}
+                  placeholder="••••••••"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="confirm-password">Confirm New Password</Label>
+                <Input
+                  id="confirm-password"
+                  type="password"
+                  value={accountData.confirmPassword}
+                  onChange={(e) => setAccountData({ ...accountData, confirmPassword: e.target.value })}
+                  placeholder="••••••••"
+                />
+              </div>
+
+              <Button className="w-full">
+                Update Password
+              </Button>
+            </div>
+          </Card>
+
+          {/* Two-Factor Authentication */}
+          <Card className="p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <Shield className="w-5 h-5" />
+                  <h3>Two-Factor Authentication</h3>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Add an extra layer of security to your account
+                </p>
+              </div>
+              <Switch
+                id="2fa"
+                checked={user?.twoFactorEnabled}
+                onCheckedChange={handleToggle2FA}
+              />
+            </div>
+            
+            {user?.twoFactorEnabled && (
+              <Card className="mt-4 p-4 bg-blue-50 border-blue-200">
+                <p className="text-sm text-blue-900">
+                  Two-factor authentication is enabled. You'll need to enter a code from your authenticator app when signing in.
+                </p>
+              </Card>
+            )}
+          </Card>
+
+          {/* Export Data */}
+          <Card className="p-6">
+            <h3 className="mb-4">Export Data</h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              Export your job search data and application screens to PDF for your records or to share with career advisors.
+            </p>
+            <PdfExportDialog />
           </Card>
         </TabsContent>
 
