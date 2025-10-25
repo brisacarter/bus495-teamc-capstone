@@ -178,41 +178,41 @@ export function LiveCoachView() {
           </>
         ) : (
           // Non-Premium Users
-          <Card className="p-12 text-center relative overflow-hidden">
+          <Card className="p-8 md:p-12 text-center relative overflow-hidden">
             <div className="relative z-10">
-              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-[#3E6BAF] to-[#5580C7] rounded-full flex items-center justify-center">
-                <Crown className="w-10 h-10 text-white" />
+              <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 bg-purple-100 rounded-full flex items-center justify-center">
+                <Users className="w-8 h-8 md:w-10 md:h-10 text-purple-600" />
               </div>
-              <h2 className="mb-4">Premium Feature</h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+              <h2 className="mb-3 md:mb-4">Premium Feature</h2>
+              <p className="text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto">
                 Get personalized 1:1 coaching sessions with experienced career professionals. 
                 Upgrade to Premium to unlock live coaching, detailed interview feedback, and priority support.
               </p>
               
-              <div className="grid md:grid-cols-3 gap-4 mb-8 text-left max-w-3xl mx-auto">
-                <div className="p-4 bg-white border rounded-lg">
+              <div className="grid md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8 text-left max-w-3xl mx-auto">
+                <div className="p-3 md:p-4 bg-white border rounded-lg">
                   <CheckCircle2 className="w-5 h-5 text-green-600 mb-2" />
-                  <p className="text-sm">4 coaching sessions/month</p>
+                  <p className="text-sm font-medium">4 coaching sessions/month</p>
                 </div>
-                <div className="p-4 bg-white border rounded-lg">
+                <div className="p-3 md:p-4 bg-white border rounded-lg">
                   <CheckCircle2 className="w-5 h-5 text-green-600 mb-2" />
-                  <p className="text-sm">Expert career guidance</p>
+                  <p className="text-sm font-medium">Expert career guidance</p>
                 </div>
-                <div className="p-4 bg-white border rounded-lg">
+                <div className="p-3 md:p-4 bg-white border rounded-lg">
                   <CheckCircle2 className="w-5 h-5 text-green-600 mb-2" />
-                  <p className="text-sm">Mock interview practice</p>
+                  <p className="text-sm font-medium">Mock interview practice</p>
                 </div>
               </div>
 
-              <Button size="lg" className="bg-[#3E6BAF] hover:bg-[#2E5A9F]">
+              <Button size="lg" className="bg-[#3E6BAF] hover:bg-[#2E5A9F] text-white">
                 <Crown className="w-5 h-5 mr-2" />
-                Upgrade to Premium - $4.99/month
+                Upgrade to Premium
               </Button>
             </div>
 
             {/* Decorative Lock Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-50 to-transparent opacity-50" />
-            <Lock className="absolute top-4 right-4 w-8 h-8 text-gray-300" />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-50 to-transparent opacity-30" />
+            <Lock className="absolute top-4 right-4 w-6 h-6 md:w-8 md:h-8 text-gray-300" />
           </Card>
         )}
       </div>
