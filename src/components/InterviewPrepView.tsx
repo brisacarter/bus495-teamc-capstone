@@ -407,15 +407,15 @@ export function InterviewPrepView() {
                       className="transition-all duration-1000"
                     />
                     <defs>
-                      <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" className="text-red-500" stopColor="currentColor" />
-                        <stop offset="50%" className="text-yellow-500" stopColor="currentColor" />
-                        <stop offset="100%" className="text-green-500" stopColor="currentColor" />
+                      <linearGradient id="scoreGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stopColor="#ef4444" />
+                        <stop offset="50%" stopColor="#eab308" />
+                        <stop offset="100%" stopColor="#22c55e" />
                       </linearGradient>
                     </defs>
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className={`text-3xl ${getScoreColor(currentScore)}`}>
+                    <span className={`text-3xl font-semibold ${getScoreColor(currentScore)}`}>
                       {currentScore}
                     </span>
                     <span className="text-xs text-muted-foreground">/ 100</span>
