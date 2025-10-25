@@ -23,7 +23,11 @@ import {
   Trash2,
   CheckCircle,
   Shield,
-  Mail
+  Mail,
+  Settings,
+  CreditCard,
+  Camera,
+  Mic
 } from 'lucide-react';
 import { SeniorityLevel } from '../types';
 import { PdfExportDialog } from './PdfExportDialog';
@@ -37,6 +41,14 @@ export function ProfileView() {
     newPassword: '',
     confirmPassword: '',
   });
+  const [cardInfo, setCardInfo] = useState({
+    cardNumber: '•••• •••• •••• 4242',
+    expiryDate: '12/25',
+    cvv: '',
+    nameOnCard: 'John Doe',
+  });
+  const [cameraPermission, setCameraPermission] = useState(false);
+  const [micPermission, setMicPermission] = useState(false);
   const [profileData, setProfileData] = useState({
     jobInterests: user?.profile.jobInterests.join(', ') || '',
     seniorityLevel: user?.profile.seniorityLevel || 'mid-level',
@@ -163,8 +175,8 @@ export function ProfileView() {
             <span className="hidden md:inline">Resume</span>
           </TabsTrigger>
           <TabsTrigger value="account">
-            <User className="w-4 h-4 md:mr-2" />
-            <span className="hidden md:inline">Account</span>
+            <Settings className="w-4 h-4 md:mr-2" />
+            <span className="hidden md:inline">Settings</span>
           </TabsTrigger>
         </TabsList>
 
@@ -276,6 +288,103 @@ export function ProfileView() {
                 </p>
               </Card>
             )}
+          </Card>
+
+          {/* Credit Card Information */}
+          <Card className="p-6">
+            <h3 className="mb-6">Credit Card Information</h3>
+            
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="card-number">Card Number</Label>
+                <Input
+                  id="card-number"
+                  value={cardInfo.cardNumber}
+                  onChange={(e) => setCardInfo({ ...cardInfo, cardNumber: e.target.value })}
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="expiry-date">Expiry Date</Label>
+                  <Input
+                    id="expiry-date"
+                    placeholder="MM/YY"
+                    value={cardInfo.expiryDate}
+                    onChange={(e) => setCardInfo({ ...cardInfo, expiryDate: e.target.value })}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="cvv">CVV</Label>
+                  <Input
+                    id="cvv"
+                    placeholder="123"
+                    type="password"
+                    maxLength={4}
+                    value={cardInfo.cvv}
+                    onChange={(e) => setCardInfo({ ...cardInfo, cvv: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="card-name">Name on Card</Label>
+                <Input
+                  id="card-name"
+                  value={cardInfo.nameOnCard}
+                  onChange={(e) => setCardInfo({ ...cardInfo, nameOnCard: e.target.value })}
+                />
+              </div>
+
+              <Button className="w-full">
+                <CreditCard className="w-4 h-4 mr-2" />
+                Update Card Information
+              </Button>
+            </div>
+          </Card>
+
+          {/* Permissions */}
+          <Card className="p-6">
+            <h3 className="mb-6">Permissions</h3>
+            
+            <div className="space-y-4">
+              {/* Camera Permission */}
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Camera className="w-5 h-5" />
+                    <h4 className="font-medium">Camera Access</h4>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Allow access to your camera for interview practice sessions
+                  </p>
+                </div>
+                <Switch
+                  id="camera"
+                  checked={cameraPermission}
+                  onCheckedChange={setCameraPermission}
+                />
+              </div>
+
+              {/* Microphone Permission */}
+              <div className="flex items-start justify-between gap-4 pt-4 border-t">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Mic className="w-5 h-5" />
+                    <h4 className="font-medium">Microphone Access</h4>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Allow access to your microphone for interview practice sessions
+                  </p>
+                </div>
+                <Switch
+                  id="microphone"
+                  checked={micPermission}
+                  onCheckedChange={setMicPermission}
+                />
+              </div>
+            </div>
           </Card>
 
           {/* Export Data */}
