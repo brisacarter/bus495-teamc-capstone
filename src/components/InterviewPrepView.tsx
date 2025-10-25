@@ -516,7 +516,7 @@ export function InterviewPrepView() {
   // FRAME 2: AI Interview (Live Recording)
   if (currentFrame === 'interview') {
     return (
-      <div className="h-full bg-[#2C3E50] flex flex-col">
+      <div className="h-full bg-slate-900 flex flex-col">
         {/* Analyzing Modal */}
         <Dialog open={showAnalyzing} onOpenChange={() => {}}>
           <DialogContent className="max-w-md">
@@ -543,7 +543,7 @@ export function InterviewPrepView() {
         </Dialog>
 
         {/* Header */}
-        <div className="bg-[#34495E] border-b border-gray-700 p-4">
+        <div className="bg-slate-800 border-b border-slate-700 p-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
               <h2 className="text-white">AI Mock Interview</h2>
@@ -568,7 +568,7 @@ export function InterviewPrepView() {
         {/* Main Content */}
         <div className="flex-1 grid md:grid-cols-3 gap-4 p-4 overflow-hidden">
           {/* Left: AI Avatar */}
-          <Card className="bg-[#34495E] border-gray-700 p-6 flex flex-col">
+          <Card className="bg-slate-800 border-slate-700 p-6 flex flex-col">
             <h3 className="text-white mb-4 flex items-center gap-2">
               AI Interviewer
               <span className="text-lg">{getToneIndicator(currentQuestion?.tone || 'warm')}</span>
@@ -592,7 +592,7 @@ export function InterviewPrepView() {
             </div>
 
             {/* Current Question */}
-            <div className={`bg-gray-700 rounded-lg p-4 transition-all duration-500 ${
+            <div className={`bg-slate-700 rounded-lg p-4 transition-all duration-500 ${
               avatarSpeaking ? 'ring-2 ring-blue-400' : ''
             }`}>
               <p className="text-xs text-gray-400 mb-2">Current Question:</p>
@@ -601,11 +601,11 @@ export function InterviewPrepView() {
               </p>
               
               {currentQuestion?.evaluationFocus.length > 0 && (
-                <div className="mt-3 pt-3 border-t border-gray-600">
-                  <p className="text-xs text-gray-400 mb-1">Evaluation Focus:</p>
+                <div className="mt-3 pt-3 border-t border-slate-600">
+                  <p className="text-xs text-slate-400 mb-1">Evaluation Focus:</p>
                   <div className="flex flex-wrap gap-1">
                     {currentQuestion.evaluationFocus.map((focus, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs bg-[#34495E] text-gray-300 border-gray-600">
+                      <Badge key={idx} variant="outline" className="text-xs bg-slate-700 text-slate-300 border-slate-600">
                         {focus}
                       </Badge>
                     ))}
@@ -628,7 +628,7 @@ export function InterviewPrepView() {
                 onClick={handleNextQuestion}
                 variant="outline"
                 size="sm"
-                className="mt-3 bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
+                className="mt-3 bg-slate-700 border-slate-600 text-white hover:bg-slate-600"
               >
                 Next Question
               </Button>
@@ -636,15 +636,15 @@ export function InterviewPrepView() {
           </Card>
 
           {/* Center: User Webcam */}
-          <Card className="bg-[#34495E] border-gray-700 p-6 flex flex-col">
+          <Card className="bg-slate-800 border-slate-700 p-6 flex flex-col">
             <h3 className="text-white mb-4">Your Video</h3>
             
             {/* Webcam Preview Placeholder */}
-            <div className="flex-1 bg-[#2C3E50] rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div className="flex-1 bg-slate-900 rounded-lg flex items-center justify-center relative overflow-hidden">
               <div className="text-center">
-                <Video className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-500">Camera Preview</p>
-                <p className="text-sm text-gray-600 mt-1">Your webcam feed appears here</p>
+                <Video className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+                <p className="text-slate-500">Camera Preview</p>
+                <p className="text-sm text-slate-600 mt-1">Your webcam feed appears here</p>
               </div>
               
               {/* Recording Indicator */}
@@ -663,7 +663,7 @@ export function InterviewPrepView() {
                       <div className="flex gap-1">
                         <div className="w-2 h-2 bg-green-500 rounded-full" />
                         <div className="w-2 h-2 bg-green-500 rounded-full" />
-                        <div className="w-2 h-2 bg-gray-600 rounded-full" />
+                        <div className="w-2 h-2 bg-slate-600 rounded-full" />
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
@@ -671,7 +671,7 @@ export function InterviewPrepView() {
                       <div className="flex gap-1">
                         <div className="w-2 h-2 bg-yellow-500 rounded-full" />
                         <div className="w-2 h-2 bg-yellow-500 rounded-full" />
-                        <div className="w-2 h-2 bg-gray-600 rounded-full" />
+                        <div className="w-2 h-2 bg-slate-600 rounded-full" />
                       </div>
                     </div>
                   </div>
@@ -694,7 +694,7 @@ export function InterviewPrepView() {
                   <Button 
                     onClick={handlePauseRecording}
                     variant="outline"
-                    className="bg-gray-700 border-gray-600 text-white hover:bg-gray-600"
+                    className="bg-slate-700 border-slate-600 text-white hover:bg-slate-600"
                   >
                     {isPaused ? (
                       <>
@@ -721,7 +721,7 @@ export function InterviewPrepView() {
           </Card>
 
           {/* Right: Stage Tracker */}
-          <Card className="bg-[#34495E] border-gray-700 p-6">
+          <Card className="bg-slate-800 border-slate-700 p-6">
             <h3 className="text-white mb-4">Interview Stages</h3>
             
             <div className="space-y-3">
@@ -734,18 +734,18 @@ export function InterviewPrepView() {
                     key={stage.id}
                     className={`p-3 rounded-lg border transition-all ${
                       isActive 
-                        ? 'bg-[#3E6BAF] border-[#3E6BAF] text-white' 
+                        ? 'bg-[#5B8DEF] border-[#5B8DEF] text-white' 
                         : isCompleted
                         ? 'bg-green-900/30 border-green-700 text-green-200'
-                        : 'bg-gray-700 border-gray-600 text-gray-400'
+                        : 'bg-slate-700 border-slate-600 text-slate-400'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       {isCompleted ? (
                         <CheckCircle2 className="w-5 h-5" />
                       ) : (
-                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs ${
-                          isActive ? 'bg-white text-[#3E6BAF]' : 'bg-gray-600'
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
+                          isActive ? 'bg-white text-[#5B8DEF]' : 'bg-slate-600 text-slate-400'
                         }`}>
                           {index + 1}
                         </div>
@@ -757,9 +757,9 @@ export function InterviewPrepView() {
               })}
             </div>
 
-            <Separator className="my-4 bg-gray-700" />
+            <Separator className="my-4 bg-slate-700" />
 
-            <div className="space-y-2 text-sm text-gray-400">
+            <div className="space-y-2 text-sm text-slate-400">
               <p className="flex items-center justify-between">
                 <span>Questions Asked:</span>
                 <span className="text-white">{questionsAsked} / 8</span>
