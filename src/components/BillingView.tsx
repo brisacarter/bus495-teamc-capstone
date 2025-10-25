@@ -139,59 +139,59 @@ export function BillingView() {
           </Card>
 
           {/* Premium Plan */}
-          <Card className="p-6 relative bg-black text-white border-black">
+          <Card className="p-6 relative border-black" style={{ backgroundColor: '#000000', color: '#ffffff' }}>
             <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-600 text-white">
               Best Value
             </Badge>
             
             <div className="flex flex-col h-full">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
                   <Crown className="w-6 h-6 text-yellow-400" />
                 </div>
               </div>
               
               <div className="text-center mb-6">
-                <h3 className="mb-2 text-white">Premium</h3>
+                <h3 className="mb-2" style={{ color: '#ffffff' }}>Premium</h3>
                 <div className="mb-2">
-                  <span className="text-4xl font-bold text-white">$600</span>
-                  <span className="text-white/70">/month</span>
+                  <span className="text-4xl font-bold" style={{ color: '#ffffff' }}>$600</span>
+                  <span style={{ color: 'rgba(255, 255, 255, 0.7)' }}>/month</span>
                 </div>
-                <p className="text-sm text-white/70">Complete career acceleration package</p>
+                <p className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>Complete career acceleration package</p>
               </div>
               
               <ul className="space-y-3 mb-6 flex-1">
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white">Everything in Pro</span>
+                  <span style={{ color: '#ffffff' }}>Everything in Pro</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white">6 Interview Prep sessions</span>
+                  <span style={{ color: '#ffffff' }}>6 Interview Prep sessions</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white">2 Live 1-on-1 coach calls</span>
+                  <span style={{ color: '#ffffff' }}>2 Live 1-on-1 coach calls</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white">Dedicated career specialist</span>
+                  <span style={{ color: '#ffffff' }}>Dedicated career specialist</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white">Resume review + feedback</span>
+                  <span style={{ color: '#ffffff' }}>Resume review + feedback</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white">Resume writing service</span>
+                  <span style={{ color: '#ffffff' }}>Resume writing service</span>
                 </li>
                 <li className="flex items-start gap-2 text-sm">
                   <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white">LinkedIn profile optimization</span>
+                  <span style={{ color: '#ffffff' }}>LinkedIn profile optimization</span>
                 </li>
               </ul>
 
-              <Button className="w-full bg-white text-black hover:bg-gray-100">
+              <Button className="w-full" style={{ backgroundColor: '#ffffff', color: '#000000' }}>
                 Upgrade to Premium
               </Button>
             </div>
@@ -233,7 +233,7 @@ export function BillingView() {
               >
                 <Minus className="w-4 h-4" />
               </Button>
-              <div className="w-12 h-12 rounded-lg bg-[#5B8DEF] text-white flex items-center justify-center text-xl font-bold">
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center text-xl font-bold" style={{ backgroundColor: '#5B8DEF', color: '#ffffff' }}>
                 {interviewPrepCount}
               </div>
               <Button 
@@ -270,7 +270,7 @@ export function BillingView() {
               >
                 <Minus className="w-4 h-4" />
               </Button>
-              <div className="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center text-xl font-bold">
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center text-xl font-bold" style={{ backgroundColor: '#9333ea', color: '#ffffff' }}>
                 {liveCoachCount}
               </div>
               <Button 
