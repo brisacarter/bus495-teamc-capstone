@@ -204,91 +204,87 @@ export function BillingView() {
       </div>
 
       {/* Add Individual Sessions & Cart */}
-      <div className="grid md:grid-cols-[1fr_350px] gap-6 items-start">
-        <div>
-          <h3 className="mb-4">Add Individual Sessions</h3>
-          <p className="text-sm text-muted-foreground mb-6">Purchase sessions à la carte to supplement your plan</p>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Interview Prep Session */}
-            <Card className="p-6">
-              <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-[#5B8DEF]/10 rounded-full flex items-center justify-center">
-                  <Mic className="w-6 h-6 text-[#5B8DEF]" />
-                </div>
+      <div>
+        <h3 className="mb-4">Add Individual Sessions</h3>
+        <p className="text-sm text-muted-foreground mb-6">Purchase sessions à la carte to supplement your plan</p>
+        
+        <div className="grid md:grid-cols-3 gap-6">
+          {/* Interview Prep Session */}
+          <Card className="p-6">
+            <div className="flex justify-center mb-4">
+              <div className="w-12 h-12 bg-[#5B8DEF]/10 rounded-full flex items-center justify-center">
+                <Mic className="w-6 h-6 text-[#5B8DEF]" />
               </div>
-              
-              <h4 className="text-center mb-2">Interview Prep Session</h4>
-              <p className="text-center text-2xl font-bold text-[#5B8DEF] mb-4">$90<span className="text-sm text-muted-foreground"> each</span></p>
-              
-              <p className="text-sm text-muted-foreground text-center mb-6">
-                AI-powered interview practice with personalized feedback and coaching
-              </p>
-              
-              <div className="flex items-center justify-center gap-3">
-                <Button 
-                  variant="outline" 
-                  size="icon"
-                  onClick={() => setInterviewPrepCount(Math.max(0, interviewPrepCount - 1))}
-                  disabled={interviewPrepCount === 0}
-                >
-                  <Minus className="w-4 h-4" />
-                </Button>
-                <div className="w-12 h-12 rounded-lg bg-[#5B8DEF] text-white flex items-center justify-center text-xl font-bold">
-                  {interviewPrepCount}
-                </div>
-                <Button 
-                  variant="outline" 
-                  size="icon"
-                  onClick={() => setInterviewPrepCount(interviewPrepCount + 1)}
-                >
-                  <Plus className="w-4 h-4" />
-                </Button>
+            </div>
+            
+            <h4 className="text-center mb-2">Interview Prep Session</h4>
+            <p className="text-center text-2xl font-bold text-[#5B8DEF] mb-4">$90<span className="text-sm text-muted-foreground"> each</span></p>
+            
+            <p className="text-sm text-muted-foreground text-center mb-6">
+              AI-powered interview practice with personalized feedback and coaching
+            </p>
+            
+            <div className="flex items-center justify-center gap-3">
+              <Button 
+                variant="outline" 
+                size="icon"
+                onClick={() => setInterviewPrepCount(Math.max(0, interviewPrepCount - 1))}
+                disabled={interviewPrepCount === 0}
+              >
+                <Minus className="w-4 h-4" />
+              </Button>
+              <div className="w-12 h-12 rounded-lg bg-[#5B8DEF] text-white flex items-center justify-center text-xl font-bold">
+                {interviewPrepCount}
               </div>
-            </Card>
+              <Button 
+                variant="outline" 
+                size="icon"
+                onClick={() => setInterviewPrepCount(interviewPrepCount + 1)}
+              >
+                <Plus className="w-4 h-4" />
+              </Button>
+            </div>
+          </Card>
 
-            {/* Live Coach Session */}
-            <Card className="p-6">
-              <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                  <Users className="w-6 h-6 text-purple-600" />
-                </div>
+          {/* Live Coach Session */}
+          <Card className="p-6">
+            <div className="flex justify-center mb-4">
+              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                <Users className="w-6 h-6 text-purple-600" />
               </div>
-              
-              <h4 className="text-center mb-2">Live Coach Session</h4>
-              <p className="text-center text-2xl font-bold text-purple-600 mb-4">$250<span className="text-sm text-muted-foreground"> each</span></p>
-              
-              <p className="text-sm text-muted-foreground text-center mb-6">
-                1-on-1 coaching with experienced career professionals for personalized guidance
-              </p>
-              
-              <div className="flex items-center justify-center gap-3">
-                <Button 
-                  variant="outline" 
-                  size="icon"
-                  onClick={() => setLiveCoachCount(Math.max(0, liveCoachCount - 1))}
-                  disabled={liveCoachCount === 0}
-                >
-                  <Minus className="w-4 h-4" />
-                </Button>
-                <div className="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center text-xl font-bold">
-                  {liveCoachCount}
-                </div>
-                <Button 
-                  variant="outline" 
-                  size="icon"
-                  onClick={() => setLiveCoachCount(liveCoachCount + 1)}
-                >
-                  <Plus className="w-4 h-4" />
-                </Button>
+            </div>
+            
+            <h4 className="text-center mb-2">Live Coach Session</h4>
+            <p className="text-center text-2xl font-bold text-purple-600 mb-4">$250<span className="text-sm text-muted-foreground"> each</span></p>
+            
+            <p className="text-sm text-muted-foreground text-center mb-6">
+              1-on-1 coaching with experienced career professionals for personalized guidance
+            </p>
+            
+            <div className="flex items-center justify-center gap-3">
+              <Button 
+                variant="outline" 
+                size="icon"
+                onClick={() => setLiveCoachCount(Math.max(0, liveCoachCount - 1))}
+                disabled={liveCoachCount === 0}
+              >
+                <Minus className="w-4 h-4" />
+              </Button>
+              <div className="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center text-xl font-bold">
+                {liveCoachCount}
               </div>
-            </Card>
-          </div>
-        </div>
+              <Button 
+                variant="outline" 
+                size="icon"
+                onClick={() => setLiveCoachCount(liveCoachCount + 1)}
+              >
+                <Plus className="w-4 h-4" />
+              </Button>
+            </div>
+          </Card>
 
-        {/* Your Cart */}
-        <div>
-          <Card className="p-6 border-2 sticky top-4">
+          {/* Your Cart */}
+          <Card className="p-6 border-2">
             <h3 className="mb-6 flex items-center gap-2">
               <ShoppingCart className="w-5 h-5" />
               Your Cart
