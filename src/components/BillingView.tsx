@@ -5,7 +5,6 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
-import { Switch } from './ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { 
   Check, 
@@ -19,17 +18,13 @@ import {
   CreditCard,
   User,
   Download,
-  Calendar,
-  Camera,
-  Mic as MicIcon
+  Calendar
 } from 'lucide-react';
 
 export function BillingView() {
   const { user } = useApp();
   const [interviewPrepCount, setInterviewPrepCount] = useState(0);
   const [liveCoachCount, setLiveCoachCount] = useState(0);
-  const [cameraAccess, setCameraAccess] = useState(true);
-  const [microphoneAccess, setMicrophoneAccess] = useState(true);
   const [billingInfo, setBillingInfo] = useState({
     cardNumber: '•••• •••• •••• 4242',
     expiryDate: '12/25',
@@ -419,33 +414,11 @@ export function BillingView() {
           <Card className="p-6">
             <h3 className="mb-6">Payment Method</h3>
             
-            {/* Credit Card Visual */}
-            <div className="mb-6 p-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl text-white shadow-lg">
-              <div className="flex justify-between items-start mb-8">
-                <div className="w-12 h-8 bg-yellow-400 rounded"></div>
-                <CreditCard className="w-10 h-10 opacity-50" />
-              </div>
-              <div className="mb-4">
-                <p className="text-xl tracking-wider font-mono">{billingInfo.cardNumber}</p>
-              </div>
-              <div className="flex justify-between items-end">
-                <div>
-                  <p className="text-xs text-gray-400 mb-1">CARD HOLDER</p>
-                  <p className="text-sm font-medium">{billingInfo.nameOnCard}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-400 mb-1">EXPIRES</p>
-                  <p className="text-sm font-medium">{billingInfo.expiryDate}</p>
-                </div>
-              </div>
-            </div>
-
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="card-number">Card Number</Label>
                 <Input
                   id="card-number"
-                  placeholder="1234 5678 9012 3456"
                   value={billingInfo.cardNumber}
                   onChange={(e) => setBillingInfo({ ...billingInfo, cardNumber: e.target.value })}
                 />
@@ -479,7 +452,6 @@ export function BillingView() {
                 <Label htmlFor="name-on-card">Name on Card</Label>
                 <Input
                   id="name-on-card"
-                  placeholder="John Doe"
                   value={billingInfo.nameOnCard}
                   onChange={(e) => setBillingInfo({ ...billingInfo, nameOnCard: e.target.value })}
                 />
@@ -489,45 +461,6 @@ export function BillingView() {
                 <CreditCard className="w-4 h-4 mr-2" />
                 Update Payment Method
               </Button>
-            </div>
-          </Card>
-
-          {/* Permissions */}
-          <Card className="p-6">
-            <h3 className="mb-6">Permissions</h3>
-            
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 border rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Camera className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Camera Access</p>
-                    <p className="text-sm text-muted-foreground">Allow access to your camera for interview prep sessions</p>
-                  </div>
-                </div>
-                <Switch
-                  checked={cameraAccess}
-                  onCheckedChange={setCameraAccess}
-                />
-              </div>
-
-              <div className="flex items-center justify-between p-4 border rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                    <MicIcon className="w-5 h-5 text-purple-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Microphone Access</p>
-                    <p className="text-sm text-muted-foreground">Allow access to your microphone for interview prep sessions</p>
-                  </div>
-                </div>
-                <Switch
-                  checked={microphoneAccess}
-                  onCheckedChange={setMicrophoneAccess}
-                />
-              </div>
             </div>
           </Card>
 
