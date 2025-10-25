@@ -65,6 +65,19 @@ npm run build
 
 ## Recent Changes
 
+### October 25, 2025: Figma Design Alignment
+- **AI Mock Interview Styling**: Updated dark theme colors to match Figma design
+  - Changed main background from `bg-gray-900` to `#1C2432` (dark blue-gray)
+  - Changed card/header backgrounds from `bg-gray-800` to `#2A3744` (lighter blue-gray)
+  - Affects: webcam view, AI avatar card, header, evaluation badges, interview stages card
+  - Creates distinctive dark blue-gray appearance instead of pure black/gray theme
+- **Design Verification**: Confirmed all other screens match Figma specifications
+  - Dashboard: Light gray background with proper stat cards and job cards
+  - Interview Prep Dashboard: Blue gradient banner, white button, progress circle, tip cards
+  - Interview Results: Green gradient score card, colored metric cards with progress bars
+  - Profile & Billing: Standard shadcn/ui component styling
+- **Color Palette**: AI Mock Interview now uses consistent `#1C2432` / `#2A3744` theme
+
 ### October 24, 2025: Major Feature Integration (v3)
 - **Interview Prep Feature**: New interview preparation screen with AI coaching
   - Conditional "Start Interview Prep" button on TechCorp Senior Software Engineer jobs
