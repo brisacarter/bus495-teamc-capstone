@@ -306,11 +306,26 @@ export function InterviewPrepView() {
     }
   };
 
-  const getTipColor = (type: string) => {
+  const getTipStyle = (type: string) => {
     switch (type) {
-      case 'success': return 'bg-green-900/30 border-green-700 text-green-200';
-      case 'warning': return 'bg-yellow-900/30 border-yellow-700 text-yellow-200';
-      default: return 'bg-blue-900/30 border-blue-700 text-blue-200';
+      case 'success': 
+        return { 
+          backgroundColor: 'rgba(6, 78, 59, 0.3)', 
+          borderColor: 'rgb(21, 128, 61)', 
+          color: '#86EFAC' 
+        };
+      case 'warning': 
+        return { 
+          backgroundColor: 'rgba(113, 63, 18, 0.3)', 
+          borderColor: 'rgb(161, 98, 7)', 
+          color: '#FDE047' 
+        };
+      default: 
+        return { 
+          backgroundColor: 'rgba(30, 58, 138, 0.3)', 
+          borderColor: 'rgb(37, 99, 235)', 
+          color: '#93C5FD' 
+        };
     }
   };
 
@@ -546,9 +561,9 @@ export function InterviewPrepView() {
         <div className="border-b p-4" style={{ backgroundColor: '#1A242F', borderColor: '#34495E' }}>
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <h2 className="text-white">AI Mock Interview</h2>
+              <h2 className="text-white text-xl font-semibold">AI Mock Interview</h2>
               {isRecording && (
-                <Badge className="bg-red-600 animate-pulse">
+                <Badge className="animate-pulse text-white" style={{ backgroundColor: '#EF4444' }}>
                   <Circle className="w-2 h-2 mr-1 fill-white" />
                   Recording
                 </Badge>
@@ -596,17 +611,26 @@ export function InterviewPrepView() {
               className={`rounded-lg p-4 transition-all duration-500 ${avatarSpeaking ? 'ring-2 ring-blue-400' : ''}`}
               style={{ backgroundColor: '#475569' }}
             >
-              <p className="text-xs text-gray-400 mb-2">Current Question:</p>
+              <p className="text-xs mb-2" style={{ color: '#94A3B8' }}>Current Question:</p>
               <p className="text-white text-sm leading-relaxed">
                 "{currentQuestion?.text}"
               </p>
               
               {currentQuestion?.evaluationFocus.length > 0 && (
-                <div className="mt-3 pt-3 border-t border-[#64748B]">
-                  <p className="text-xs text-slate-300 mb-1">Evaluation Focus:</p>
+                <div className="mt-3 pt-3" style={{ borderTop: '1px solid #64748B' }}>
+                  <p className="text-xs mb-1" style={{ color: '#94A3B8' }}>Evaluation Focus:</p>
                   <div className="flex flex-wrap gap-1">
                     {currentQuestion.evaluationFocus.map((focus, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs bg-[#334155] text-slate-300 border-[#64748B]">
+                      <Badge 
+                        key={idx} 
+                        variant="outline" 
+                        className="text-xs"
+                        style={{ 
+                          backgroundColor: '#334155', 
+                          color: '#CBD5E1',
+                          borderColor: '#64748B'
+                        }}
+                      >
                         {focus}
                       </Badge>
                     ))}
@@ -616,7 +640,10 @@ export function InterviewPrepView() {
             </div>
 
             {/* Live Tips */}
-            <div className={`mt-4 p-3 rounded-lg border transition-all duration-500 ${getTipColor(currentTip.type)}`}>
+            <div 
+              className="mt-4 p-3 rounded-lg border transition-all duration-500"
+              style={getTipStyle(currentTip.type)}
+            >
               <p className="text-xs flex items-center gap-2">
                 {getTipIcon(currentTip.icon)}
                 <span>{currentTip.message}</span>
@@ -735,13 +762,7 @@ export function InterviewPrepView() {
                 return (
                   <div 
                     key={stage.id}
-                    className={`p-3 rounded-lg border transition-all ${
-                      isActive 
-                        ? 'text-white' 
-                        : isCompleted
-                        ? 'text-green-200'
-                        : 'text-slate-300'
-                    }`}
+                    className="p-3 rounded-lg border transition-all text-white"
                     style={{
                       backgroundColor: isActive ? '#5B8DEF' : isCompleted ? 'rgba(6, 78, 59, 0.3)' : '#475569',
                       borderColor: isActive ? '#5B8DEF' : isCompleted ? 'rgb(21, 128, 61)' : '#64748B'
