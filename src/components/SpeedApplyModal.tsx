@@ -128,8 +128,22 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
       idx === stepIndex ? { ...step, status: 'complete' } : step
     ));
 
-    // Move to next step
-    setTimeout(() => processNextStep(stepIndex + 1), 200);
+    // Check if this is the last step of the last job
+    const isLastStep = stepIndex === steps.length - 1;
+    const isLastJob = currentJobIndex === jobs.length - 1;
+    
+    if (isLastStep && isLastJob) {
+      // This is the final step - trigger completion immediately
+      setTimeout(() => {
+        setSteps(prev => prev.map(step => ({ ...step, status: 'complete' })));
+        setIsComplete(true);
+        setIsProcessing(false);
+        onComplete();
+      }, 200);
+    } else {
+      // Move to next step
+      setTimeout(() => processNextStep(stepIndex + 1), 200);
+    }
   };
 
   const handleStart = () => {
