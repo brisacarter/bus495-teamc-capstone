@@ -402,15 +402,16 @@ export function InterviewPrepView() {
                 {/* Circular Progress */}
                 <div className="relative w-32 h-32">
                   <svg className="w-32 h-32 transform -rotate-90">
+                    {/* Background circle (unfilled portion) - LIGHT GRAY */}
                     <circle
                       cx="64"
                       cy="64"
                       r="56"
-                      stroke="currentColor"
+                      stroke="#E5E7EB"
                       strokeWidth="8"
                       fill="none"
-                      className="text-gray-200"
                     />
+                    {/* Progress circle (filled portion) - GRADIENT */}
                     <circle
                       cx="64"
                       cy="64"
@@ -420,29 +421,30 @@ export function InterviewPrepView() {
                       fill="none"
                       strokeDasharray={`${(currentScore / 100) * 351.86} 351.86`}
                       className="transition-all duration-1000"
+                      strokeLinecap="round"
                     />
                     <defs>
                       <linearGradient id="scoreGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                        <stop offset="0%" stopColor="#ef4444" />
-                        <stop offset="50%" stopColor="#eab308" />
-                        <stop offset="100%" stopColor="#22c55e" />
+                        <stop offset="0%" stopColor="#FF8C42" />
+                        <stop offset="50%" stopColor="#FFD93D" />
+                        <stop offset="100%" stopColor="#6BCF7F" />
                       </linearGradient>
                     </defs>
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className={`text-3xl font-semibold ${getScoreColor(currentScore)}`}>
+                    <span className="text-4xl font-bold" style={{ color: '#6BCF7F' }}>
                       {currentScore}
                     </span>
-                    <span className="text-xs text-muted-foreground">/ 100</span>
+                    <span className="text-sm" style={{ color: '#6B7280' }}>/ 100</span>
                   </div>
                 </div>
 
                 <div className="mt-4 text-center">
-                  <div className="flex items-center gap-1 text-sm text-green-600">
+                  <div className="flex items-center gap-1 text-sm font-semibold" style={{ color: '#6BCF7F' }}>
                     <TrendingUp className="w-4 h-4" />
                     <span>+{currentScore - previousScore}% improvement</span>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">Since last session</p>
+                  <p className="text-xs mt-1" style={{ color: '#6B7280' }}>Since last session</p>
                 </div>
               </div>
             </Card>
