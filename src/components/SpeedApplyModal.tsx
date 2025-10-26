@@ -79,8 +79,9 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
   ]);
 
   const currentJob = jobs[currentJobIndex];
+  // completedJobs represents jobs that are DONE, not currently processing
   const completedJobs = isComplete ? jobs.length : currentJobIndex;
-  const progress = (completedJobs / jobs.length) * 100;
+  const progress = isComplete ? 100 : (currentJobIndex / jobs.length) * 100;
 
   useEffect(() => {
     if (isOpen) {
@@ -93,6 +94,11 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
   }, [isOpen]);
 
   const processNextStep = async (stepIndex: number) => {
+    // Safety check: stop if already complete
+    if (isComplete || !isProcessing) {
+      return;
+    }
+
     if (stepIndex >= steps.length) {
       // All steps complete for current job
       if (currentJobIndex < jobs.length - 1) {
@@ -101,7 +107,7 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
         setSteps(steps.map(step => ({ ...step, status: 'pending' })));
         setTimeout(() => processNextStep(0), 500);
       } else {
-        // All jobs complete - mark all steps as complete and stop
+        // All jobs complete - STOP ANIMATION
         setSteps(prev => prev.map(step => ({ ...step, status: 'complete' })));
         setIsComplete(true);
         setIsProcessing(false);
@@ -233,11 +239,11 @@ Application Link: ${job.applicationLink}
             <>
               {/* Overall Progress */}
               <div className="space-y-2">
-                <div className="flex justify-between items-center text-sm">
+                <div className="flex justify-between items-center text-sm font-medium">
                   <span className="text-muted-foreground">
-                    Overall Progress: {isComplete ? jobs.length : currentJobIndex + 1} of {jobs.length} jobs
+                    Overall Progress: {isComplete ? jobs.length : currentJobIndex + 1} of {jobs.length} job{jobs.length > 1 ? 's' : ''}
                   </span>
-                  <span>{Math.round(progress)}%</span>
+                  <span className="text-foreground">{Math.round(progress)}%</span>
                 </div>
                 <Progress value={progress} className="h-2" />
               </div>
@@ -290,13 +296,17 @@ Application Link: ${job.applicationLink}
               {/* Success State */}
               {isComplete && (
                 <>
-                  <Card className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-green-600 mt-0.5" />
+                  <Card className="p-6 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-400">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0">
+                        <CheckCircle2 className="w-8 h-8" style={{ color: '#10B981' }} />
+                      </div>
                       <div className="flex-1">
-                        <h4 className="text-green-900 mb-1">Speed Apply Complete!</h4>
-                        <p className="text-sm text-green-800">
-                          Your applications have been successfully submitted to {jobs.length} job{jobs.length > 1 ? 's' : ''}. 
+                        <h4 className="text-lg font-semibold mb-2" style={{ color: '#065F46' }}>
+                          ✓ Applications Successfully Submitted!
+                        </h4>
+                        <p className="text-sm" style={{ color: '#047857' }}>
+                          All {jobs.length} application{jobs.length > 1 ? 's have' : ' has'} been successfully submitted. 
                           Personalized messages have been sent to the hiring managers.
                         </p>
                       </div>
