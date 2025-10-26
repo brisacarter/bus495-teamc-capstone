@@ -81,7 +81,11 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
   const currentJob = jobs[currentJobIndex];
   // completedJobs represents jobs that are DONE, not currently processing
   const completedJobs = isComplete ? jobs.length : currentJobIndex;
-  const progress = isComplete ? 100 : (currentJobIndex / jobs.length) * 100;
+  // Calculate progress based on completed jobs + current step progress
+  const completedSteps = steps.filter(s => s.status === 'complete').length;
+  const totalSteps = jobs.length * steps.length;
+  const currentProgress = (currentJobIndex * steps.length) + completedSteps;
+  const progress = isComplete ? 100 : (currentProgress / totalSteps) * 100;
 
   useEffect(() => {
     if (isOpen) {
