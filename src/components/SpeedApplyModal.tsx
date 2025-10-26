@@ -79,13 +79,11 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
   ]);
 
   const currentJob = jobs[currentJobIndex];
-  // completedJobs represents jobs that are DONE, not currently processing
-  const completedJobs = isComplete ? jobs.length : currentJobIndex;
   // Calculate progress based on completed jobs + current step progress
   const completedSteps = steps.filter(s => s.status === 'complete').length;
   const totalSteps = jobs.length * steps.length;
   const currentProgress = (currentJobIndex * steps.length) + completedSteps;
-  const progress = isComplete ? 100 : (currentProgress / totalSteps) * 100;
+  const progress = isComplete ? 100 : Math.min(100, (currentProgress / totalSteps) * 100);
 
   useEffect(() => {
     if (isOpen) {
@@ -97,14 +95,15 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
     }
   }, [isOpen]);
 
-  const processNextStep = async (stepIndex: number) => {
+  const processNextStep = async (stepIndex: number, jobIndex: number = currentJobIndex) => {
     if (stepIndex >= steps.length) {
       // All steps complete for current job
-      if (currentJobIndex < jobs.length - 1) {
+      if (jobIndex < jobs.length - 1) {
         // Move to next job
-        setCurrentJobIndex(prev => prev + 1);
+        const nextJobIndex = jobIndex + 1;
+        setCurrentJobIndex(nextJobIndex);
         setSteps(steps.map(step => ({ ...step, status: 'pending' })));
-        setTimeout(() => processNextStep(0), 500);
+        setTimeout(() => processNextStep(0, nextJobIndex), 500);
       } else {
         // All jobs complete - STOP ANIMATION
         setSteps(prev => prev.map(step => ({ ...step, status: 'complete' })));
@@ -128,22 +127,8 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
       idx === stepIndex ? { ...step, status: 'complete' } : step
     ));
 
-    // Check if this is the last step of the last job
-    const isLastStep = stepIndex === steps.length - 1;
-    const isLastJob = currentJobIndex === jobs.length - 1;
-    
-    if (isLastStep && isLastJob) {
-      // This is the final step - trigger completion immediately
-      setTimeout(() => {
-        setSteps(prev => prev.map(step => ({ ...step, status: 'complete' })));
-        setIsComplete(true);
-        setIsProcessing(false);
-        onComplete();
-      }, 200);
-    } else {
-      // Move to next step
-      setTimeout(() => processNextStep(stepIndex + 1), 200);
-    }
+    // Move to next step after a brief delay
+    setTimeout(() => processNextStep(stepIndex + 1, jobIndex), 200);
   };
 
   const handleStart = () => {
