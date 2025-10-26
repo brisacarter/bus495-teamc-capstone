@@ -45,6 +45,8 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
   const [isComplete, setIsComplete] = useState(false);
   const [showApplicationPreview, setShowApplicationPreview] = useState(false);
   const [selectedJobForPreview, setSelectedJobForPreview] = useState<JobLead | null>(null);
+  const [totalJobCount, setTotalJobCount] = useState(jobs.length); // Store initial count
+  const [completedJobs, setCompletedJobs] = useState<JobLead[]>([]); // Store completed jobs
   const [steps, setSteps] = useState<Step[]>([
     {
       id: 'format',
@@ -91,9 +93,11 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
       setCurrentJobIndex(0);
       setIsComplete(false);
       setIsProcessing(false);
+      setTotalJobCount(jobs.length);
+      setCompletedJobs([]);
       setSteps(prev => prev.map(step => ({ ...step, status: 'pending' })));
     }
-  }, [isOpen]);
+  }, [isOpen, jobs.length]);
 
   const processNextStep = async (stepIndex: number, jobIndex: number = currentJobIndex) => {
     if (stepIndex >= steps.length) {
@@ -106,6 +110,7 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
         setTimeout(() => processNextStep(0, nextJobIndex), 500);
       } else {
         // All jobs complete - STOP ANIMATION
+        setCompletedJobs([...jobs]); // Store jobs before they get cleared
         setSteps(prev => prev.map(step => ({ ...step, status: 'complete' })));
         setIsComplete(true);
         setIsProcessing(false);
@@ -226,7 +231,7 @@ Application Link: ${job.applicationLink}
                   <h4 className="text-blue-900 mb-1">Ready to Speed Apply</h4>
                   <p className="text-sm text-blue-800">
                     Your resume and profile details will be automatically formatted, filled, and submitted to{' '}
-                    <strong>{jobs.length} job{jobs.length > 1 ? 's' : ''}</strong>.
+                    <strong>{totalJobCount} job{totalJobCount > 1 ? 's' : ''}</strong>.
                   </p>
                 </div>
               </div>
@@ -239,7 +244,7 @@ Application Link: ${job.applicationLink}
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-sm font-medium">
                   <span className="text-muted-foreground">
-                    Overall Progress: {isComplete ? jobs.length : currentJobIndex + 1} of {jobs.length} job{jobs.length > 1 ? 's' : ''}
+                    Overall Progress: {isComplete ? totalJobCount : currentJobIndex + 1} of {totalJobCount} job{totalJobCount > 1 ? 's' : ''}
                   </span>
                   <span className="text-foreground">{Math.round(progress)}%</span>
                 </div>
@@ -261,34 +266,38 @@ Application Link: ${job.applicationLink}
 
               {/* Steps */}
               <div className="space-y-3">
-                {steps.map((step, index) => (
-                  <div
-                    key={step.id}
-                    className={`flex items-start gap-3 transition-all ${
-                      step.status === 'processing' ? 'scale-105' : ''
-                    }`}
-                  >
-                    <div className={`mt-0.5 ${getStepColor(step.status)}`}>
-                      {step.status === 'complete' ? (
-                        <CheckCircle2 className="w-5 h-5" />
-                      ) : (
-                        step.icon
-                      )}
-                    </div>
-                    <div className="flex-1">
-                      <p className={`text-sm ${getStepColor(step.status)}`}>
-                        {step.label}
-                        {step.status === 'processing' && (
-                          <span className="ml-2 inline-flex gap-1">
-                            <span className="animate-pulse">.</span>
-                            <span className="animate-pulse delay-100">.</span>
-                            <span className="animate-pulse delay-200">.</span>
-                          </span>
+                {steps.map((step, index) => {
+                  // When complete, force all steps to show as complete
+                  const displayStatus = isComplete ? 'complete' : step.status;
+                  return (
+                    <div
+                      key={step.id}
+                      className={`flex items-start gap-3 transition-all ${
+                        displayStatus === 'processing' ? 'scale-105' : ''
+                      }`}
+                    >
+                      <div className={`mt-0.5 ${getStepColor(displayStatus)}`}>
+                        {displayStatus === 'complete' ? (
+                          <CheckCircle2 className="w-5 h-5" />
+                        ) : (
+                          step.icon
                         )}
-                      </p>
+                      </div>
+                      <div className="flex-1">
+                        <p className={`text-sm ${getStepColor(displayStatus)}`}>
+                          {step.label}
+                          {displayStatus === 'processing' && !isComplete && (
+                            <span className="ml-2 inline-flex gap-1">
+                              <span className="animate-pulse">.</span>
+                              <span className="animate-pulse delay-100">.</span>
+                              <span className="animate-pulse delay-200">.</span>
+                            </span>
+                          )}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               {/* Success State */}
@@ -304,7 +313,7 @@ Application Link: ${job.applicationLink}
                           ✓ Applications Successfully Submitted!
                         </h4>
                         <p className="text-sm" style={{ color: '#047857' }}>
-                          All {jobs.length} application{jobs.length > 1 ? 's have' : ' has'} been successfully submitted. 
+                          All {totalJobCount} application{totalJobCount > 1 ? 's have' : ' has'} been successfully submitted. 
                           Personalized messages have been sent to the hiring managers.
                         </p>
                       </div>
@@ -319,7 +328,7 @@ Application Link: ${job.applicationLink}
                     </h4>
                     <ScrollArea className="max-h-48">
                       <div className="space-y-2">
-                        {jobs.map((job) => (
+                        {completedJobs.map((job) => (
                           <div key={job.id} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                             <div className="flex-1">
                               <p className="text-sm">{job.title}</p>
