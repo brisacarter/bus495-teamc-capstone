@@ -516,7 +516,7 @@ export function InterviewPrepView() {
   // FRAME 2: AI Interview (Live Recording)
   if (currentFrame === 'interview') {
     return (
-      <div className="h-full bg-[#2C3E50] flex flex-col">
+      <div className="h-full flex flex-col" style={{ backgroundColor: '#2C3E50' }}>
         {/* Analyzing Modal */}
         <Dialog open={showAnalyzing} onOpenChange={() => {}}>
           <DialogContent className="max-w-md">
@@ -543,7 +543,7 @@ export function InterviewPrepView() {
         </Dialog>
 
         {/* Header */}
-        <div className="bg-[#1A242F] border-b border-[#34495E] p-4">
+        <div className="border-b p-4" style={{ backgroundColor: '#1A242F', borderColor: '#34495E' }}>
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
               <h2 className="text-white">AI Mock Interview</h2>
@@ -568,7 +568,7 @@ export function InterviewPrepView() {
         {/* Main Content */}
         <div className="flex-1 grid md:grid-cols-3 gap-4 p-4 overflow-hidden">
           {/* Left: AI Avatar */}
-          <Card className="bg-[#334155] border-[#475569] p-6 flex flex-col">
+          <Card className="p-6 flex flex-col" style={{ backgroundColor: '#334155', borderColor: '#475569' }}>
             <h3 className="text-white mb-4 flex items-center gap-2">
               AI Interviewer
               <span className="text-lg">{getToneIndicator(currentQuestion?.tone || 'warm')}</span>
@@ -592,9 +592,10 @@ export function InterviewPrepView() {
             </div>
 
             {/* Current Question */}
-            <div className={`bg-[#475569] rounded-lg p-4 transition-all duration-500 ${
-              avatarSpeaking ? 'ring-2 ring-blue-400' : ''
-            }`}>
+            <div 
+              className={`rounded-lg p-4 transition-all duration-500 ${avatarSpeaking ? 'ring-2 ring-blue-400' : ''}`}
+              style={{ backgroundColor: '#475569' }}
+            >
               <p className="text-xs text-gray-400 mb-2">Current Question:</p>
               <p className="text-white text-sm leading-relaxed">
                 "{currentQuestion?.text}"
@@ -628,7 +629,8 @@ export function InterviewPrepView() {
                 onClick={handleNextQuestion}
                 variant="outline"
                 size="sm"
-                className="mt-3 bg-[#475569] border-[#64748B] text-white hover:bg-[#64748B]"
+                className="mt-3 text-white hover:bg-[#64748B]"
+                style={{ backgroundColor: '#475569', borderColor: '#64748B' }}
               >
                 Next Question
               </Button>
@@ -636,11 +638,11 @@ export function InterviewPrepView() {
           </Card>
 
           {/* Center: User Webcam */}
-          <Card className="bg-[#334155] border-[#475569] p-6 flex flex-col">
+          <Card className="p-6 flex flex-col" style={{ backgroundColor: '#334155', borderColor: '#475569' }}>
             <h3 className="text-white mb-4">Your Video</h3>
             
             {/* Webcam Preview Placeholder */}
-            <div className="flex-1 bg-[#1E293B] rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div className="flex-1 rounded-lg flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#1E293B' }}>
               <div className="text-center">
                 <Video className="w-16 h-16 text-slate-500 mx-auto mb-4" />
                 <p className="text-slate-400">Camera Preview</p>
@@ -694,7 +696,8 @@ export function InterviewPrepView() {
                   <Button 
                     onClick={handlePauseRecording}
                     variant="outline"
-                    className="bg-[#475569] border-[#64748B] text-white hover:bg-[#64748B]"
+                    className="text-white hover:bg-[#64748B]"
+                    style={{ backgroundColor: '#475569', borderColor: '#64748B' }}
                   >
                     {isPaused ? (
                       <>
@@ -721,7 +724,7 @@ export function InterviewPrepView() {
           </Card>
 
           {/* Right: Stage Tracker */}
-          <Card className="bg-[#334155] border-[#475569] p-6">
+          <Card className="p-6" style={{ backgroundColor: '#334155', borderColor: '#475569' }}>
             <h3 className="text-white mb-4">Interview Stages</h3>
             
             <div className="space-y-3">
@@ -734,19 +737,28 @@ export function InterviewPrepView() {
                     key={stage.id}
                     className={`p-3 rounded-lg border transition-all ${
                       isActive 
-                        ? 'bg-[#5B8DEF] border-[#5B8DEF] text-white' 
+                        ? 'text-white' 
                         : isCompleted
-                        ? 'bg-green-900/30 border-green-700 text-green-200'
-                        : 'bg-[#475569] border-[#64748B] text-slate-300'
+                        ? 'text-green-200'
+                        : 'text-slate-300'
                     }`}
+                    style={{
+                      backgroundColor: isActive ? '#5B8DEF' : isCompleted ? 'rgba(6, 78, 59, 0.3)' : '#475569',
+                      borderColor: isActive ? '#5B8DEF' : isCompleted ? 'rgb(21, 128, 61)' : '#64748B'
+                    }}
                   >
                     <div className="flex items-center gap-3">
                       {isCompleted ? (
                         <CheckCircle2 className="w-5 h-5" />
                       ) : (
-                        <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
-                          isActive ? 'bg-white text-[#5B8DEF]' : 'bg-[#64748B] text-slate-300'
-                        }`}>
+                        <div 
+                          className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
+                            isActive ? 'text-[#5B8DEF]' : 'text-slate-300'
+                          }`}
+                          style={{
+                            backgroundColor: isActive ? 'white' : '#64748B'
+                          }}
+                        >
                           {index + 1}
                         </div>
                       )}
@@ -757,7 +769,7 @@ export function InterviewPrepView() {
               })}
             </div>
 
-            <Separator className="my-4 bg-[#64748B]" />
+            <Separator className="my-4" style={{ backgroundColor: '#64748B' }} />
 
             <div className="space-y-2 text-sm text-slate-300">
               <p className="flex items-center justify-between">

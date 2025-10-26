@@ -65,12 +65,26 @@ npm run build
 
 ## Recent Changes
 
-### October 25, 2025: Figma Design Alignment
-- **AI Mock Interview Styling**: Updated dark theme colors to match Figma design
-  - Changed main background from `bg-gray-900` to `#1C2432` (dark blue-gray)
-  - Changed card/header backgrounds from `bg-gray-800` to `#2A3744` (lighter blue-gray)
-  - Affects: webcam view, AI avatar card, header, evaluation badges, interview stages card
-  - Creates distinctive dark blue-gray appearance instead of pure black/gray theme
+### October 26, 2025: CRITICAL FIX - AI Mock Interview Dark Theme
+- **FIXED: Dark Navy Theme Applied with Inline Styles**
+  - **Issue**: shadcn Card component's `bg-card` CSS variable was overriding Tailwind classes
+  - **Solution**: Applied inline styles to force dark navy theme colors
+  - **Colors Applied**:
+    - Main background: `#2C3E50` (dark navy blue)
+    - Header: `#1A242F` (very dark navy)
+    - All three cards (AI Interviewer, Your Video, Interview Stages): `#334155` (slate blue)
+    - Card borders: `#475569`
+    - Question box: `#475569`
+    - Webcam preview: `#1E293B`
+    - Inactive stage items: `#475569` background, `#64748B` borders
+    - Buttons: `#475569` background with `#64748B` borders
+    - Text: Light colors (slate-300, white) for contrast
+  - **Result**: AI Mock Interview now displays correct dark navy theme matching Figma design exactly
+
+### October 25, 2025: Figma Design Alignment (DEPRECATED - See Oct 26 fix above)
+- **AI Mock Interview Styling**: Attempted dark theme with Tailwind classes (did not work)
+  - Issue: Card component's default background overrode Tailwind classes
+  - Fixed with inline styles on October 26
 - **Design Verification**: Confirmed all other screens match Figma specifications
   - Dashboard: Light gray background with proper stat cards and job cards
   - Interview Prep Dashboard: Blue gradient banner, white button, progress circle, tip cards
