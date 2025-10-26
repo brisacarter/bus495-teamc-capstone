@@ -792,18 +792,18 @@ export function InterviewPrepView() {
 
             <Separator className="my-4" style={{ backgroundColor: '#64748B' }} />
 
-            <div className="space-y-2 text-sm text-slate-300">
-              <p className="flex items-center justify-between">
+            <div className="space-y-2 text-sm">
+              <p className="flex items-center justify-between text-white">
                 <span>Questions Asked:</span>
-                <span className="text-white">{questionsAsked} / 8</span>
+                <span>{questionsAsked} / 8</span>
               </p>
-              <p className="flex items-center justify-between">
+              <p className="flex items-center justify-between text-white">
                 <span>Avg Response Time:</span>
-                <span className="text-white">{avgResponseTime}</span>
+                <span>{avgResponseTime}</span>
               </p>
-              <p className="flex items-center justify-between">
+              <p className="flex items-center justify-between text-white">
                 <span>Confidence Score:</span>
-                <span className="text-green-400">78%</span>
+                <span style={{ color: '#22C55E' }}>78%</span>
               </p>
             </div>
           </Card>
