@@ -94,11 +94,6 @@ export function SpeedApplyModal({ isOpen, onOpenChange, jobs, onComplete }: Spee
   }, [isOpen]);
 
   const processNextStep = async (stepIndex: number) => {
-    // Safety check: stop if already complete
-    if (isComplete || !isProcessing) {
-      return;
-    }
-
     if (stepIndex >= steps.length) {
       // All steps complete for current job
       if (currentJobIndex < jobs.length - 1) {
